@@ -15,6 +15,7 @@
 
 <style lang="scss" scoped>
 aside {
+  background-color: $gray-color;
   padding: 0.5rem 0;
   height: 40px;
   p {
