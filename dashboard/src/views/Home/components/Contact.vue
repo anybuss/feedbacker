@@ -10,7 +10,7 @@
   </section>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 section {
   display: flex;
   justify-content: center;
@@ -22,10 +22,10 @@ section {
     width: 80%;
     max-width: 1200px;
     margin: 4rem 0;
+    text-align: center;
     h1 {
       font-weight: $font-black;
       font-size: 2.25rem;
-      text-align: center;
       color: $graydark-color;
     }
     p {
@@ -35,12 +35,12 @@ section {
     .wrapper-link {
       margin-top: 2.5rem;
       a {
-        color: #ffffff;
+        color: $white-color;
         background-color: $main-color;
         font-weight: $font-bold;
         padding: 0.5rem 1.5rem;
         margin-top: 2.5rem;
-        border-radius: 9999px;
+        border-radius: 999px;
         text-decoration: none;
         &:focus {
           outline: none;

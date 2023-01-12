@@ -20,7 +20,7 @@ aside {
   height: 40px;
   p {
     color: $graymedium-color;
-    font-size: 14px;
+    font-size: 0.75rem;
     text-align: center;
     a {
       color: $graydark-color;

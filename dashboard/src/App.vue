@@ -39,7 +39,7 @@ footer {
   height: 80px;
   p {
     color: $graydark-color;
-    font-size: 18px;
+    font-size: 1.15rem;
     font-weight: $font-bold;
     text-align: center;
     text-transform: lowercase;
