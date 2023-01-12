@@ -28,4 +28,98 @@
   </section>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+section {
+  background-color: $main-color;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 700px;
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    max-width: 1200px;
+    background-image: url("@/assets/images/blue_balloons.png");
+    background-size: 628px;
+    background-position: 100% 100%;
+    background-repeat: no-repeat;
+    .top-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 2.5rem 0;
+      img {
+        width: 150px;
+      }
+      .wrapper-buttons {
+        display: flex;
+        .btn-create {
+          @include button-secondary;
+        }
+        .btn-login {
+          @include button-primary;
+        }
+      }
+    }
+    .bottom-container {
+      display: flex;
+      flex-direction: column;
+      margin-top: 7rem;
+      h1 {
+        color: $white-color;
+        font-weight: $font-black;
+        font-size: 2.25rem;
+        line-height: 2.5rem;
+      }
+      p {
+        color: $white-color;
+        font-weight: $font-medium;
+        font-size: 1.15rem;
+        line-height: 1.75rem;
+      }
+      div button {
+        @include button-primary;
+        margin-top: 2.5rem;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 640px) {
+  section {
+    .wrapper {
+      background-image: none;
+      .top-container {
+        flex-direction: column;
+        align-items: center;
+        img {
+          width: 180px;
+        }
+        .wrapper-buttons {
+          margin-top: 1.5rem;
+        }
+      }
+      .bottom-container {
+        margin-top: 3rem;
+        h1 {
+          text-align: center;
+          .line-break {
+            display: none;
+          }
+        }
+        p {
+          text-align: center;
+          .line-break {
+            display: none;
+          }
+        }
+        div {
+          display: flex;
+          justify-content: center;
+        }
+      }
+    }
+  }
+}
+</style>
