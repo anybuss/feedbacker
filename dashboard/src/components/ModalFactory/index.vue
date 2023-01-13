@@ -109,12 +109,15 @@ function handleModalToggle(payload) {
       }
     }
   }
-  .default-width {
-    width: 33.3%;
-  }
+}
+</style>
+
+<style scoped>
+.default-width {
+  width: 35%;
 }
 
-@media screen and (max-width: 640px) {
+@media screen and (max-width: 720px) {
   .default-width {
     width: 75%;
   }
