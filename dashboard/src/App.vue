@@ -1,5 +1,6 @@
 <template>
   <main>
+    <modal-factory></modal-factory>
     <router-view></router-view>
   </main>
 
@@ -13,6 +14,7 @@
 </template>
 
 <script setup>
+import ModalFactory from "@/components/ModalFactory/index.vue";
 import CopyrightDev from "@/components/CopyrightDev.vue";
 
 function getCurrentYear() {

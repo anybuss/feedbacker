@@ -4,8 +4,10 @@
       <div class="top-container">
         <img src="@/assets/images/logo_white.svg" alt="Feedbacker logo" />
         <div class="wrapper-buttons">
-          <button class="btn-create">Crie uma conta</button>
-          <button class="btn-login">Entrar</button>
+          <button @click="() => emit('create-account')" class="btn-create">
+            Crie uma conta
+          </button>
+          <button @click="() => emit('login')" class="btn-login">Entrar</button>
         </div>
       </div>
 
@@ -27,6 +29,10 @@
     </div>
   </section>
 </template>
+
+<script setup>
+const emit = defineEmits(["create-account", "login"]);
+</script>
 
 <style lang="scss" scoped>
 section {
