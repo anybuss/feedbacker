@@ -1,18 +1,83 @@
 <template>
   <teleport to="body">
-    <section class="modal-overlay">
-      <div class="modal-wrapper">
+    <section
+      v-if="state.isActive"
+      @click="handleModalToggle({ status: false })"
+      class="modal-overlay"
+    >
+      <div @click.stop :class="state.width" class="modal-wrapper">
         <div
           class="modal-container animate__animated animate__fadeInDown animate__faster"
         >
           <div class="modal-content">
-            <component></component>
+            <component :is="handleModalReference(state.component)"></component>
           </div>
         </div>
       </div>
     </section>
   </teleport>
 </template>
+
+<script setup>
+import {
+  reactive,
+  onMounted,
+  onBeforeUnmount,
+  defineAsyncComponent,
+  defineComponent,
+} from "vue";
+import useModal from "@/hooks/useModal";
+
+const ModalLogin = defineAsyncComponent(() =>
+  import("../ModalLogin/index.vue")
+);
+
+const ModalCreateAccount = defineAsyncComponent(() =>
+  import("../ModalCreateAccount/index.vue")
+);
+
+defineComponent({
+  components: [ModalLogin, ModalCreateAccount],
+});
+
+const DEFAULT_WIDTH = "default-width";
+const modal = useModal();
+
+const state = reactive({
+  isActive: false,
+  component: {},
+  props: {},
+  width: DEFAULT_WIDTH,
+});
+
+onMounted(() => {
+  modal.listen(handleModalToggle);
+});
+
+onBeforeUnmount(() => {
+  modal.off(handleModalToggle);
+});
+
+function handleModalReference(name) {
+  if (name === "ModalLogin") return ModalLogin;
+
+  if (name === "ModalCreateAccount") return ModalCreateAccount;
+}
+
+function handleModalToggle(payload) {
+  if (payload.status) {
+    state.component = payload.component;
+    state.props = payload.props;
+    state.width = payload.width ?? DEFAULT_WIDTH;
+  } else {
+    state.component = {};
+    state.props = {};
+    state.width = DEFAULT_WIDTH;
+  }
+
+  state.isActive = payload.status;
+}
+</script>
 
 <style lang="scss" scoped>
 .modal-overlay {
