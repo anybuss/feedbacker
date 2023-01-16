@@ -18,9 +18,13 @@
             type="email"
             placeholder="exemplo@email.com"
           />
-          <span v-if="!!state.email.errorMessage">{{
-            state.email.errorMessage
-          }}</span>
+          <span
+            v-if="!!state.email.errorMessage"
+            :style="{
+              paddingTop: state.email.errorMessage ? '0.5rem' : '0',
+            }"
+            >{{ state.email.errorMessage }}</span
+          >
         </div>
 
         <div class="form-item">
@@ -36,9 +40,13 @@
             type="password"
             placeholder="********"
           />
-          <span v-if="!!state.password.errorMessage">{{
-            state.password.errorMessage
-          }}</span>
+          <span
+            v-if="!!state.password.errorMessage"
+            :style="{
+              paddingTop: state.password.errorMessage ? '0.5rem' : '0',
+            }"
+            >{{ state.password.errorMessage }}</span
+          >
         </div>
 
         <button
@@ -58,14 +66,22 @@
 import { reactive } from "vue";
 import { useField } from "vee-validate";
 import useModal from "@/hooks/useModal";
+import {
+  validateEmptyAndLength3,
+  validateEmptyAndEmail,
+} from "@/utils/validators";
 
 const modal = useModal();
 
-const { value: emailValue, errorMessage: emailErrorMessage } =
-  useField("email");
+const { value: emailValue, errorMessage: emailErrorMessage } = useField(
+  "email",
+  validateEmptyAndEmail
+);
 
-const { value: passwordValue, errorMessage: passwordErrorMessage } =
-  useField("password");
+const { value: passwordValue, errorMessage: passwordErrorMessage } = useField(
+  "password",
+  validateEmptyAndLength3
+);
 
 const state = reactive({
   hasErrors: false,
@@ -118,7 +134,6 @@ section {
           padding: 0.75rem 1rem;
           background-color: $gray-color;
           border-width: 2px;
-          border-color: transparent;
           border-radius: 0.25rem;
           &:focus {
             outline: none;
