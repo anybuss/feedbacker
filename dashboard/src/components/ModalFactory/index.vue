@@ -8,6 +8,7 @@
       <div @click.stop :class="state.width" class="modal-wrapper">
         <div
           class="modal-container animate__animated animate__fadeInDown animate__faster"
+          :style="{ width: `${state.width}px` }"
         >
           <div class="modal-content">
             <component :is="handleModalReference(state.component)"></component>
@@ -21,6 +22,8 @@
 <script setup>
 import {
   reactive,
+  ref,
+  computed,
   onMounted,
   onBeforeUnmount,
   defineAsyncComponent,
@@ -40,8 +43,13 @@ defineComponent({
   components: [ModalLogin, ModalCreateAccount],
 });
 
-const DEFAULT_WIDTH = "default-width";
 const modal = useModal();
+
+const widthRef = ref(window.innerWidth);
+const DEFAULT_WIDTH = computed(() => {
+  if (widthRef.value >= 768) return 580;
+  return 300;
+});
 
 const state = reactive({
   isActive: false,
@@ -51,6 +59,7 @@ const state = reactive({
 });
 
 onMounted(() => {
+  window.onresize = () => (widthRef.value = window.innerWidth);
   modal.listen(handleModalToggle);
 });
 
@@ -100,26 +109,14 @@ function handleModalToggle(payload) {
       flex-direction: column;
       overflow: hidden;
       background-color: $white-color;
-      border-radius: 0.5rem;
+      border-radius: 0.25rem;
       .modal-content {
         display: flex;
         flex-direction: column;
-        padding: 2.5rem 3rem;
+        padding: 2rem;
         background-color: $white-color;
       }
     }
-  }
-}
-</style>
-
-<style scoped>
-.default-width {
-  width: 35%;
-}
-
-@media screen and (max-width: 720px) {
-  .default-width {
-    width: 75%;
   }
 }
 </style>
