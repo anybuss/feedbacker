@@ -22,5 +22,10 @@
 @mixin button-secondary {
   @include button-custom;
   color: $white-color;
+}
 
+@mixin button-action {
+  @include button-custom;
+  color: $white-color;
+  background-color: $main-color;
 }

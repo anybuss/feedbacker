@@ -35,16 +35,9 @@ section {
     .wrapper-link {
       margin-top: 2.5rem;
       a {
-        color: $white-color;
-        background-color: $main-color;
-        font-weight: $font-bold;
-        padding: 0.5rem 1.5rem;
-        margin-top: 2.5rem;
-        border-radius: 999px;
+        @include button-action;
         text-decoration: none;
-        &:focus {
-          outline: none;
-        }
+        margin-top: 2.5rem;
       }
     }
   }
