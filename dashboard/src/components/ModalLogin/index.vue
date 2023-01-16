@@ -2,26 +2,79 @@
   <section>
     <div class="top-content">
       <h2>Entre na sua conta</h2>
-      <button @click="">&times;</button>
+      <button @click="modal.close">&times;</button>
     </div>
 
     <fieldset>
-      <form @submit.prevent="">
+      <form @submit.prevent="handleSubmit">
         <div class="form-item">
           <label for="email">E-mail</label>
-          <input id="email" type="email" placeholder="exemplo@email.com" />
+          <input
+            v-model="state.email.value"
+            :style="{
+              borderColor: state.email.errorMessage ? '#f88676' : 'transparent',
+            }"
+            id="email"
+            type="email"
+            placeholder="exemplo@email.com"
+          />
+          <span v-if="!!state.email.errorMessage">{{
+            state.email.errorMessage
+          }}</span>
         </div>
 
         <div class="form-item">
           <label for="password">Senha</label>
-          <input id="password" type="password" />
+          <input
+            v-model="state.password.value"
+            :style="{
+              borderColor: state.password.errorMessage
+                ? '#f88676'
+                : 'transparent',
+            }"
+            id="password"
+            type="password"
+            placeholder="********"
+          />
+          <span v-if="!!state.password.errorMessage">{{
+            state.password.errorMessage
+          }}</span>
         </div>
 
-        <button class="btn-submit" type="submit">Entrar</button>
+        <button
+          :disabled="state.isLoading"
+          :style="{ opacity: state.isLoading ? 50 : 100 }"
+          class="btn-submit"
+          type="submit"
+        >
+          Entrar
+        </button>
       </form>
     </fieldset>
   </section>
 </template>
+
+<script setup>
+import { reactive } from "vue";
+import useModal from "@/hooks/useModal";
+
+const modal = useModal();
+
+const state = reactive({
+  hasErrors: false,
+  isLoading: false,
+  email: {
+    value: "",
+    errorMessage: "",
+  },
+  password: {
+    value: "",
+    errorMessage: "",
+  },
+});
+
+function handleSubmit() {}
+</script>
 
 <style lang="scss" scoped>
 section {
