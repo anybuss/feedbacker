@@ -51,11 +51,16 @@
 
         <button
           :disabled="state.isLoading"
-          :style="{ opacity: state.isLoading ? 50 : 100 }"
+          :style="{ opacity: state.isLoading ? 0.5 : 1 }"
           class="btn-submit"
           type="submit"
         >
-          Entrar
+          <icon
+            v-if="state.isLoading"
+            name="loading"
+            class="animate__animated animate__rotateIn animate__slower animate__infinite"
+          ></icon>
+          <span v-else>Entrar</span>
         </button>
       </form>
     </fieldset>
@@ -186,6 +191,9 @@ section {
       }
       .btn-submit {
         @include button-action;
+        display: flex;
+        justify-content: center;
+        min-width: 98px;
         margin-top: 2rem;
         font-size: 1.15rem;
         transition: all 150ms;
