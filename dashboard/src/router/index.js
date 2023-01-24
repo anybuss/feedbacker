@@ -10,9 +10,12 @@ const routes = [
     component: Home,
   },
   {
-    path: "/",
+    path: "/feedbacks",
     name: "Feedbacks",
     component: Feedbacks,
+    meta: {
+      hasAuth: true,
+    },
   },
   {
     path: "/:pathMatch(.*)*",
