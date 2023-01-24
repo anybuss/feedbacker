@@ -2,7 +2,7 @@
   <section>
     <div class="top-content">
       <h2>Entre na sua conta</h2>
-      <button @click="modal.close">&times;</button>
+      <button @click="modal.close"><icon name="close"></icon></button>
     </div>
 
     <fieldset>
@@ -68,6 +68,7 @@ import { useRouter } from "vue-router";
 import { useField } from "vee-validate";
 import { useToast } from "vue-toastification";
 import useModal from "@/hooks/useModal";
+import Icon from "@/components/Icon/index.vue";
 import services from "@/services";
 import {
   validateEmptyAndLength3,
