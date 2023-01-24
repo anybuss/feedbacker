@@ -27,7 +27,6 @@ import {
   onMounted,
   onBeforeUnmount,
   defineAsyncComponent,
-  defineComponent,
 } from "vue";
 import useModal from "@/hooks/useModal";
 
@@ -38,10 +37,6 @@ const ModalLogin = defineAsyncComponent(() =>
 const ModalCreateAccount = defineAsyncComponent(() =>
   import("../ModalCreateAccount/index.vue")
 );
-
-defineComponent({
-  components: [ModalLogin, ModalCreateAccount],
-});
 
 const modal = useModal();
 
@@ -69,7 +64,6 @@ onBeforeUnmount(() => {
 
 function handleModalReference(name) {
   if (name === "ModalLogin") return ModalLogin;
-
   if (name === "ModalCreateAccount") return ModalCreateAccount;
 }
 
