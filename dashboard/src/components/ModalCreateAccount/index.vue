@@ -136,7 +136,43 @@ const state = reactive({
   },
 });
 
-async function handleSubmit() {}
+async function newUserLogin({ email, password }) {
+  const { data, errors } = await services.auth.login({ email, password });
+  if (!errors) {
+    window.localStorage.setItem("token", data.token);
+    router.push({ name: "Feedbacks" });
+    modal.close();
+  }
+  state.isLoading = false;
+}
+
+async function handleSubmit() {
+  try {
+    toast.clear();
+    state.isLoading = true;
+    const { data, errors } = await services.auth.register({
+      name: state.name.value,
+      email: state.email.value,
+      password: state.password.value,
+    });
+
+    if (!errors) {
+      await newUserLogin({
+        email: state.email.value,
+        password: state.password.value,
+      });
+      return;
+    }
+    if (errors.status === 400) {
+      toast.error("Ocorreu um erro ao solicitar criação de conta.");
+    }
+    state.isLoading = false;
+  } catch (error) {
+    state.isLoading = false;
+    state.hasErrors = !!error;
+    toast.error("Ocorreu um erro ao solicitar criação de conta.");
+  }
+}
 </script>
 
 <style lang="scss" scoped>
