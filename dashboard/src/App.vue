@@ -6,7 +6,7 @@
 
   <footer>
     <p>
-      Feedbacker &copy; <span>{{ getCurrentYear() }}</span>
+      Feedbacker &copy; <span>{{ getCurrentYear }}</span>
     </p>
   </footer>
 
@@ -14,12 +14,35 @@
 </template>
 
 <script setup>
+import { watch, computed } from "vue";
+import { useRouter, useRoute } from "vue-router";
+import services from "@/services";
+import { setCurrentUser } from "@/store/user";
+
 import ModalFactory from "@/components/ModalFactory/index.vue";
 import CopyrightDev from "@/components/CopyrightDev.vue";
 
-function getCurrentYear() {
+const router = useRouter();
+const route = useRoute();
+
+watch(
+  () => route.path,
+  async () => {
+    if (route.meta.hasAuth) {
+      const token = window.localStorage.getItem("token");
+      if (!token) {
+        router.push({ name: "Home" });
+        return;
+      }
+      const { data } = await services.users.getMe();
+      setCurrentUser(data);
+    }
+  }
+);
+
+const getCurrentYear = computed(() => {
   return new Date().getFullYear();
-}
+});
 </script>
 
 <style lang="scss">
