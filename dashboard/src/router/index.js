@@ -1,12 +1,21 @@
 import { createRouter, createWebHistory } from "vue-router";
 
 const Home = () => import("../views/Home/index.vue");
+const Feedbacks = () => import("../views/Feedbacks/index.vue");
 
 const routes = [
   {
     path: "/",
     name: "Home",
     component: Home,
+  },
+  {
+    path: "/feedbacks",
+    name: "Feedbacks",
+    component: Feedbacks,
+    meta: {
+      hasAuth: true,
+    },
   },
   {
     path: "/:pathMatch(.*)*",

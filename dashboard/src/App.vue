@@ -1,5 +1,6 @@
 <template>
   <main>
+    <modal-factory></modal-factory>
     <router-view></router-view>
   </main>
 
@@ -13,6 +14,7 @@
 </template>
 
 <script setup>
+import ModalFactory from "@/components/ModalFactory/index.vue";
 import CopyrightDev from "@/components/CopyrightDev.vue";
 
 function getCurrentYear() {
@@ -39,7 +41,7 @@ footer {
   height: 80px;
   p {
     color: $graydark-color;
-    font-size: 18px;
+    font-size: 1.15rem;
     font-weight: $font-bold;
     text-align: center;
     text-transform: lowercase;
