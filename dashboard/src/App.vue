@@ -16,7 +16,8 @@
 <script setup>
 import { watch, computed } from "vue";
 import { useRouter, useRoute } from "vue-router";
-import services from "./services";
+import services from "@/services";
+import { setCurrentUser } from "@/store/user";
 
 import ModalFactory from "@/components/ModalFactory/index.vue";
 import CopyrightDev from "@/components/CopyrightDev.vue";
@@ -34,7 +35,7 @@ watch(
         return;
       }
       const { data } = await services.users.getMe();
-      console.log("data", data);
+      setCurrentUser(data);
     }
   }
 );
