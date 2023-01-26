@@ -22,7 +22,7 @@
         Coloque o script abaixo no seu site para começar a receber feedbacks.
       </p>
       <div class="script-key">
-        <pre class="input">
+        <pre>
 &lt;script src="https://anybuss-feedbacker-widget.netlify.app?api_key={{
             userApiKey
           }}"&gt;&lt;/script&gt;</pre
