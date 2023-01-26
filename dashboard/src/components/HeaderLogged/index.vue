@@ -5,14 +5,34 @@
 
       <nav>
         <ul>
-          <li>Credenciais</li>
-          <li>Feedbacks</li>
-          <li>Sair</li>
+          <li @click="router.push({ name: 'Credentials' })">Credenciais</li>
+          <li @click="router.push({ name: 'Feedbacks' })">Feedbacks</li>
+          <li @click="handleLogout">{{ logoutLabel }}</li>
         </ul>
       </nav>
     </div>
   </section>
 </template>
+
+<script setup>
+import { computed } from "vue";
+import { useRouter } from "vue-router";
+import useStore from "@/hooks/useStore";
+
+const router = useRouter();
+const store = useStore("User");
+
+const logoutLabel = computed(() => {
+  if (!store.currentUser.name) return "...";
+  return `${store.currentUser.name} (sair)`;
+});
+
+function handleLogout() {
+  window.localStorage.removeItem("token");
+  cleanCurrentUser();
+  router.push({ name: "Home" });
+}
+</script>
 
 <style lang="scss" scoped>
 section {
