@@ -10,7 +10,15 @@
     <div class="section-content">
       <h2>Instalação e configuração</h2>
       <p>Aqui está a sua chave de API:</p>
-      <div class="api-key">
+
+      <content-loader
+        v-if="store.Global.isLoading || state.isLoading"
+        class="rounded"
+        width="600px"
+        height="50px"
+      ></content-loader>
+
+      <div v-else class="api-key">
         <span> {{ userApiKey }} </span>
         <div class="icons">
           <icon name="copy" :color="'#C0BCB0'"></icon>
@@ -21,7 +29,15 @@
       <p>
         Coloque o script abaixo no seu site para começar a receber feedbacks.
       </p>
-      <div class="script-key">
+
+      <content-loader
+        v-if="store.Global.isLoading || state.isLoading"
+        class="rounded"
+        width="600px"
+        height="50px"
+      ></content-loader>
+
+      <div v-else class="script-key">
         <pre>
 &lt;script src="https://anybuss-feedbacker-widget.netlify.app?api_key={{
             userApiKey
@@ -33,12 +49,17 @@
 </template>
 
 <script setup>
-import { computed } from "vue";
+import { computed, reactive } from "vue";
 import useStore from "@/hooks/useStore";
+import ContentLoader from "@/components/ContentLoader/index.vue";
 import HeaderLogged from "@/components/HeaderLogged/index.vue";
 import Icon from "@/components/Icon/index.vue";
 
 const store = useStore();
+const state = reactive({
+  isLoading: false,
+});
+
 const userApiKey = computed(() => store.User.currentUser.apiKey);
 </script>
 
