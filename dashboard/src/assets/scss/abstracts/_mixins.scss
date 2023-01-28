@@ -29,3 +29,52 @@
   color: $white-color;
   background-color: $main-color;
 }
+
+@mixin section-name {
+  background-color: $gray-color;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 240px;
+}
+
+@mixin section-name-title {
+  color: $graydark-color;
+  font-weight: $font-black;
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+}
+
+@mixin section-content {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: 2rem auto;
+}
+
+@mixin section-content-title {
+  font-weight: $font-black;
+  font-size: 1.75rem;
+  line-height: 1.75rem;
+  padding-bottom: 2rem;
+}
+
+@mixin scroll-x {
+  overflow-x: auto;
+
+  &::-webkit-scrollbar {
+    background-color: $white-color;
+    height: 6px;
+    border-radius: 6px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.25);
+    border-radius: 6px;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.4);
+    }
+  }
+}
