@@ -8,7 +8,7 @@
     </div>
 
     <div class="section-content">
-      <div class="wrapper">
+      <div class="container">
         <div class="filters">
           <h2>Listagem</h2>
           <suspense>
@@ -49,7 +49,7 @@ section {
   }
   .section-content {
     @include section-content;
-    .wrapper {
+    .container {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 0.5rem;
@@ -63,6 +63,25 @@ section {
         padding-left: 2.5rem;
         padding-right: 2.5rem;
         padding-top: 5rem;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 780px) {
+  section {
+    .section-content {
+      .container {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        .filters {
+          grid-column: 1 / 3;
+          h2 {
+            text-align: center;
+          }
+        }
+        .feedbacks {
+          grid-column: 1 / 3;
+        }
       }
     }
   }
