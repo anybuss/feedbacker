@@ -79,6 +79,7 @@ const iconColor = "#C0BCB0";
   border-radius: 0.25rem;
   cursor: pointer;
   padding: 0.5rem;
+  margin-bottom: 2rem;
   .top-infos {
     display: flex;
     align-items: center;
@@ -95,7 +96,7 @@ const iconColor = "#C0BCB0";
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       width: 100%;
-      gap: 0.5rem;
+      gap: 0.75rem;
       .columns {
         display: flex;
         flex-direction: column;
