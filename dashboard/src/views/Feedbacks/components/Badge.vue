@@ -32,6 +32,6 @@ const classColor = computed(() => {
   line-height: 1rem;
   text-transform: lowercase;
   border-radius: 999px;
-  padding: 0.5rem 1rem;
+  padding: 0.25rem 1rem;
 }
 </style>
