@@ -8,9 +8,9 @@
         :key="filter.label"
         @click="() => handleFilterClick(filter)"
         :style="{
-          backgroundColor: filter.active ? '#F9F9F9' : 'none',
-          borderRadius: filter.active ? '0.25rem' : 'none',
-          border: `1px solid ${filter.active ? filter.colors : 'none'}`,
+          backgroundColor: filter.active ? '#F9F9F9' : 'transparent',
+          borderRadius: filter.active ? '0.25rem' : '0',
+          border: `1px solid ${filter.active ? filter.colors : 'transparent'}`,
         }"
       >
         <div class="filter-item">
@@ -98,7 +98,7 @@ try {
 function handleFilterClick({ type }) {
   if (store.isLoading) return;
 
-  state.filters.map((filter) => {
+  state.filters = state.filters.map((filter) => {
     if (filter.type === type) return { ...filter, active: true };
     return { ...filter, active: false };
   });

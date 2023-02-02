@@ -1,27 +1,27 @@
 <template>
-  <content-loader class="loaders" width="100%" height="150px"></content-loader>
+  <content-loader class="loaders" width="100%" height="120px"></content-loader>
   <content-loader
     class="loaders"
     width="100%"
-    height="150px"
+    height="120px"
     animation-duration="1.9s"
   ></content-loader>
   <content-loader
     class="loaders"
     width="100%"
-    height="150px"
+    height="120px"
     animation-duration="2.2s"
   ></content-loader>
   <content-loader
     class="loaders"
     width="100%"
-    height="150px"
+    height="120px"
     animation-duration="2.5s"
   ></content-loader>
   <content-loader
     class="loaders"
     width="100%"
-    height="150px"
+    height="120px"
     animation-duration="2.8s"
   ></content-loader>
 </template>
