@@ -1,0 +1,9 @@
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@mixin animate-shimmer {
+  animation: shimmer infinite alternate ease-in-out;
+}

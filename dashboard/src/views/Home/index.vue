@@ -1,7 +1,37 @@
 <template>
-  <div>Home</div>
+  <custom-header
+    @create-account="handleCreateAccount"
+    @login="handleLogin"
+  ></custom-header>
+  <contact></contact>
 </template>
 
-<script setup></script>
+<script setup>
+import { onMounted } from "vue";
+import { useRouter } from "vue-router";
+import useModal from "@/hooks/useModal";
+import CustomHeader from "./components/CustomHeader.vue";
+import Contact from "./components/Contact.vue";
 
-<style lang="scss" scoped></style>
+const modal = useModal();
+const router = useRouter();
+
+onMounted(() => {
+  const token = window.localStorage.getItem("token");
+  if (token) {
+    router.push({ name: "Feedbacks" });
+  }
+});
+
+function handleLogin() {
+  modal.open({
+    component: "ModalLogin",
+  });
+}
+
+function handleCreateAccount() {
+  modal.open({
+    component: "ModalCreateAccount",
+  });
+}
+</script>
