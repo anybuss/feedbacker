@@ -18,12 +18,11 @@ import { watch, computed } from "vue";
 import { useRouter, useRoute } from "vue-router";
 import services from "@/services";
 import { setCurrentUser } from "@/store/user";
-
 import ModalFactory from "@/components/ModalFactory/index.vue";
 import CopyrightDev from "@/components/CopyrightDev.vue";
 
-const router = useRouter();
 const route = useRoute();
+const router = useRouter();
 
 watch(
   () => route.path,

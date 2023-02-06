@@ -4,10 +4,16 @@
       <div class="top-container">
         <img src="@/assets/images/logo_white.svg" alt="Feedbacker logo" />
         <div class="wrapper-buttons">
-          <button @click="() => emit('create-account')" class="btn-create">
+          <button
+            @click="emitCreateAccount"
+            class="btn-create"
+            id="btn-home-create-account"
+          >
             Crie uma conta
           </button>
-          <button @click="() => emit('login')" class="btn-login">Entrar</button>
+          <button @click="emitLogin" class="btn-login" id="btn-home-login">
+            Entrar
+          </button>
         </div>
       </div>
 
@@ -23,7 +29,9 @@
           simples widget na página.
         </p>
         <div>
-          <button>Crie uma conta grátis</button>
+          <button @click="emitCreateAccount" id="btn-home-cta">
+            Crie uma conta grátis
+          </button>
         </div>
       </div>
     </div>
@@ -32,6 +40,9 @@
 
 <script setup>
 const emit = defineEmits(["create-account", "login"]);
+
+const emitCreateAccount = () => emit("create-account");
+const emitLogin = () => emit("login");
 </script>
 
 <style lang="scss" scoped>

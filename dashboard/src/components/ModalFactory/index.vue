@@ -21,12 +21,13 @@
 
 <script setup>
 import {
-  reactive,
+  defineAsyncComponent,
   ref,
   computed,
+  reactive,
   onMounted,
   onBeforeUnmount,
-  defineAsyncComponent,
+  onUnmounted,
 } from "vue";
 import useModal from "@/hooks/useModal";
 
@@ -54,12 +55,19 @@ const state = reactive({
 });
 
 onMounted(() => {
-  window.onresize = () => (widthRef.value = window.innerWidth);
+  window.addEventListener("resize", () => (widthRef.value = window.innerWidth));
   modal.listen(handleModalToggle);
 });
 
 onBeforeUnmount(() => {
   modal.off(handleModalToggle);
+});
+
+onUnmounted(() => {
+  window.removeEventListener(
+    "resize",
+    () => (widthRef.value = window.innerWidth)
+  );
 });
 
 function handleModalReference(name) {
@@ -77,7 +85,6 @@ function handleModalToggle(payload) {
     state.props = {};
     state.width = DEFAULT_WIDTH;
   }
-
   state.isActive = payload.status;
 }
 </script>

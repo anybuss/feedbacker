@@ -2,21 +2,24 @@
   <section>
     <div class="top-content">
       <h2>Crie uma conta</h2>
-      <button @click="modal.close"><icon name="close"></icon></button>
+      <button @click="modal.close" id="close-modal">
+        <icon name="close"></icon>
+      </button>
     </div>
 
     <fieldset>
       <form @submit.prevent="handleSubmit">
         <div class="form-item">
-          <label for="email">Nome</label>
+          <label for="input-name-modal-create-account">Nome</label>
           <input
             v-model="state.name.value"
             :style="{
               borderColor: state.name.errorMessage ? '#f88676' : 'transparent',
             }"
-            id="name"
             type="text"
             placeholder="John Doe"
+            autocomplete="name"
+            id="input-name-modal-create-account"
           />
           <span
             v-if="!!state.name.errorMessage"
@@ -28,15 +31,16 @@
         </div>
 
         <div class="form-item">
-          <label for="email">E-mail</label>
+          <label for="input-email-modal-create-account">E-mail</label>
           <input
             v-model="state.email.value"
             :style="{
               borderColor: state.email.errorMessage ? '#f88676' : 'transparent',
             }"
-            id="email"
             type="email"
             placeholder="exemplo@email.com"
+            autocomplete="email"
+            id="input-email-modal-create-account"
           />
           <span
             v-if="!!state.email.errorMessage"
@@ -48,7 +52,7 @@
         </div>
 
         <div class="form-item">
-          <label for="password">Senha</label>
+          <label for="input-password-modal-create-account">Senha</label>
           <input
             v-model="state.password.value"
             :style="{
@@ -56,9 +60,10 @@
                 ? '#f88676'
                 : 'transparent',
             }"
-            id="password"
             type="password"
             placeholder="********"
+            autocomplete="new-password"
+            id="input-password-modal-create-account"
           />
           <span
             v-if="!!state.password.errorMessage"
@@ -74,6 +79,7 @@
           :style="{ opacity: state.isLoading ? 0.5 : 1 }"
           class="btn-submit"
           type="submit"
+          id="btn-submit-modal-create-account"
         >
           <icon
             v-if="state.isLoading"
@@ -90,15 +96,15 @@
 <script setup>
 import { reactive } from "vue";
 import { useRouter } from "vue-router";
-import { useField } from "vee-validate";
 import { useToast } from "vue-toastification";
+import { useField } from "vee-validate";
 import useModal from "@/hooks/useModal";
-import Icon from "@/components/Icon/index.vue";
 import services from "@/services";
 import {
   validateEmptyAndLength3,
   validateEmptyAndEmail,
 } from "@/utils/validators";
+import Icon from "@/components/Icon/index.vue";
 
 const router = useRouter();
 const toast = useToast();
@@ -136,7 +142,7 @@ const state = reactive({
   },
 });
 
-async function newUserLogin({ email, password }) {
+async function handleNewUserLogin({ email, password }) {
   const { data, errors } = await services.auth.login({ email, password });
   if (!errors) {
     window.localStorage.setItem("token", data.token);
@@ -157,10 +163,11 @@ async function handleSubmit() {
     });
 
     if (!errors) {
-      await newUserLogin({
+      await handleNewUserLogin({
         email: state.email.value,
         password: state.password.value,
       });
+      toast.success("Conta criada com sucesso!");
       return;
     }
     if (errors.status === 400) {
