@@ -12,24 +12,29 @@
       <p>Aqui está a sua chave de API:</p>
 
       <content-loader
-        v-if="store.Global.isLoading || state.isLoading"
+        v-if="showContentLoader"
         class="rounded"
         width="600px"
         height="50px"
       ></content-loader>
 
-      <div v-else id="apikey" class="api-key">
+      <div v-else class="api-key" id="api-key">
         <span v-if="state.hasError" class="error"
           >Erro ao carregar a chave de API.</span
         >
         <span v-else> {{ userApiKey }} </span>
         <div v-if="!state.hasError" class="icons">
-          <icon @click="handleCopyApiKey" name="copy" :color="'#C0BCB0'"></icon>
+          <icon
+            @click="handleCopyApiKey"
+            name="copy"
+            :color="'#C0BCB0'"
+            id="copy-api-key"
+          ></icon>
           <icon
             @click="handleGenerateApiKey"
             name="loading"
             :color="'#C0BCB0'"
-            id="generate-apikey"
+            id="generate-api-key"
           ></icon>
         </div>
       </div>
@@ -39,7 +44,7 @@
       </p>
 
       <content-loader
-        v-if="store.Global.isLoading || state.isLoading"
+        v-if="showContentLoader"
         class="rounded"
         width="600px"
         height="50px"
@@ -60,21 +65,26 @@
 </template>
 
 <script setup>
-import { computed, reactive, watch } from "vue";
+import { reactive, computed, watch } from "vue";
 import { useToast } from "vue-toastification";
 import services from "@/services";
 import { setApiKey } from "@/store/user";
 import useStore from "@/hooks/useStore";
-import ContentLoader from "@/components/ContentLoader/index.vue";
 import HeaderLogged from "@/components/HeaderLogged/index.vue";
+import ContentLoader from "@/components/ContentLoader/index.vue";
 import Icon from "@/components/Icon/index.vue";
 
 const toast = useToast();
 const store = useStore();
+
 const state = reactive({
   isLoading: false,
   hasError: false,
 });
+
+const showContentLoader = computed(
+  () => store.Global.isLoading || state.isLoading
+);
 
 const userApiKey = computed(() => store.User.currentUser.apiKey);
 
@@ -92,19 +102,6 @@ function handleError(error) {
   state.hasError = !!error;
 }
 
-async function handleGenerateApiKey() {
-  toast.clear();
-  try {
-    state.isLoading = true;
-    const { data } = await services.users.generateApiKey();
-    setApiKey(data.apiKey);
-    state.isLoading = false;
-  } catch (error) {
-    handleError(error);
-    toast.error("Erro ao gerar uma nova chave de API.");
-  }
-}
-
 async function handleCopyApiKey() {
   toast.clear();
   try {
@@ -113,6 +110,20 @@ async function handleCopyApiKey() {
   } catch (error) {
     handleError(error);
     toast.error("Erro ao copiar a chave de API.");
+  }
+}
+
+async function handleGenerateApiKey() {
+  toast.clear();
+  try {
+    state.isLoading = true;
+    const { data } = await services.users.generateApiKey();
+    setApiKey(data.apiKey);
+    toast.success("Chave gerada com sucesso!");
+    state.isLoading = false;
+  } catch (error) {
+    handleError(error);
+    toast.error("Erro ao gerar uma nova chave de API.");
   }
 }
 </script>

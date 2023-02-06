@@ -5,9 +5,11 @@
 
       <nav>
         <ul>
-          <li @click="router.push({ name: 'Credentials' })">Credenciais</li>
-          <li @click="router.push({ name: 'Feedbacks' })">Feedbacks</li>
-          <li @click="handleLogout">{{ logoutLabel }}</li>
+          <li @click="goToCredentialsPage" id="navbar-credentials">
+            Credenciais
+          </li>
+          <li @click="goToFeedbacksPage" id="navbar-feedbacks">Feedbacks</li>
+          <li @click="handleLogout" id="navbar-logout">{{ logoutLabel }}</li>
         </ul>
       </nav>
     </div>
@@ -17,10 +19,12 @@
 <script setup>
 import { computed } from "vue";
 import { useRouter } from "vue-router";
+import { useToast } from "vue-toastification";
 import useStore from "@/hooks/useStore";
 import { cleanCurrentUser } from "@/store/user";
 
 const router = useRouter();
+const toast = useToast();
 const store = useStore("User");
 
 const logoutLabel = computed(() => {
@@ -32,7 +36,11 @@ function handleLogout() {
   window.localStorage.removeItem("token");
   cleanCurrentUser();
   router.push({ name: "Home" });
+  toast.success("Logout realizado com sucesso!");
 }
+
+const goToCredentialsPage = () => router.push({ name: "Credentials" });
+const goToFeedbacksPage = () => router.push({ name: "Feedbacks" });
 </script>
 
 <style lang="scss" scoped>

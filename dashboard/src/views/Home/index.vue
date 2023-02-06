@@ -13,8 +13,8 @@ import useModal from "@/hooks/useModal";
 import CustomHeader from "./components/CustomHeader.vue";
 import Contact from "./components/Contact.vue";
 
-const router = useRouter();
 const modal = useModal();
+const router = useRouter();
 
 onMounted(() => {
   const token = window.localStorage.getItem("token");

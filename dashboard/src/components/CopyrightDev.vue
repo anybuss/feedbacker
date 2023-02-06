@@ -2,13 +2,16 @@
   <aside>
     <p>
       Projeto base por
-      <a href="https://treinamento.vuejsbrasil.org/">
+      <a href="https://treinamento.vuejsbrasil.org/" target="_blank">
         Treinamento - VueJS Brasil</a
       >,
     </p>
     <p>
       desenvolvido por
-      <a href="https://www.linkedin.com/in/anybuss/">Any Buss</a> &#128420;
+      <a href="https://www.linkedin.com/in/anybuss/" target="_blank"
+        >Any Buss</a
+      >
+      &#128420;
     </p>
   </aside>
 </template>

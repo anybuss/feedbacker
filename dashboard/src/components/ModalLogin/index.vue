@@ -2,21 +2,24 @@
   <section>
     <div class="top-content">
       <h2>Entre na sua conta</h2>
-      <button @click="modal.close"><icon name="close"></icon></button>
+      <button @click="modal.close" id="close-modal">
+        <icon name="close"></icon>
+      </button>
     </div>
 
     <fieldset>
       <form @submit.prevent="handleSubmit">
         <div class="form-item">
-          <label for="email">E-mail</label>
+          <label for="input-email-modal-login">E-mail</label>
           <input
             v-model="state.email.value"
             :style="{
               borderColor: state.email.errorMessage ? '#f88676' : 'transparent',
             }"
-            id="email"
             type="email"
             placeholder="exemplo@email.com"
+            autocomplete="email"
+            id="input-email-modal-login"
           />
           <span
             v-if="!!state.email.errorMessage"
@@ -28,7 +31,7 @@
         </div>
 
         <div class="form-item">
-          <label for="password">Senha</label>
+          <label for="input-password-modal-login">Senha</label>
           <input
             v-model="state.password.value"
             :style="{
@@ -36,9 +39,10 @@
                 ? '#f88676'
                 : 'transparent',
             }"
-            id="password"
             type="password"
             placeholder="********"
+            autocomplete="current-password"
+            id="input-password-modal-login"
           />
           <span
             v-if="!!state.password.errorMessage"
@@ -54,6 +58,7 @@
           :style="{ opacity: state.isLoading ? 0.5 : 1 }"
           class="btn-submit"
           type="submit"
+          id="btn-submit-modal-login"
         >
           <icon
             v-if="state.isLoading"
@@ -70,15 +75,15 @@
 <script setup>
 import { reactive } from "vue";
 import { useRouter } from "vue-router";
-import { useField } from "vee-validate";
 import { useToast } from "vue-toastification";
+import { useField } from "vee-validate";
 import useModal from "@/hooks/useModal";
-import Icon from "@/components/Icon/index.vue";
 import services from "@/services";
 import {
   validateEmptyAndLength3,
   validateEmptyAndEmail,
 } from "@/utils/validators";
+import Icon from "@/components/Icon/index.vue";
 
 const router = useRouter();
 const toast = useToast();
@@ -120,6 +125,7 @@ async function handleSubmit() {
       router.push({ name: "Feedbacks" });
       state.isLoading = false;
       modal.close();
+      toast.success("Login realizado com sucesso.");
       return;
     }
 

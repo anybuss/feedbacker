@@ -55,6 +55,7 @@ const COLORS = {
 };
 
 const store = useStore("Global");
+
 const state = reactive({
   hasError: false,
   filters: [
@@ -64,6 +65,19 @@ const state = reactive({
     },
   ],
 });
+
+try {
+  const { data } = await services.feedbacks.getSummary();
+  state.filters = applyFiltersStructure(data);
+} catch (error) {
+  state.hasError = !!error;
+  state.filters = applyFiltersStructure({
+    all: 0,
+    issue: 0,
+    idea: 0,
+    other: 0,
+  });
+}
 
 function applyFiltersStructure(summary) {
   return Object.keys(summary).reduce((acc, cur) => {
@@ -82,27 +96,12 @@ function applyFiltersStructure(summary) {
   }, []);
 }
 
-try {
-  const { data } = await services.feedbacks.getSummary();
-  state.filters = applyFiltersStructure(data);
-} catch (error) {
-  state.hasError = !!error;
-  state.filters = applyFiltersStructure({
-    all: 0,
-    issue: 0,
-    idea: 0,
-    other: 0,
-  });
-}
-
 function handleFilterClick({ type }) {
   if (store.isLoading) return;
-
   state.filters = state.filters.map((filter) => {
     if (filter.type === type) return { ...filter, active: true };
     return { ...filter, active: false };
   });
-
   emit("select-filter", type);
 }
 </script>
