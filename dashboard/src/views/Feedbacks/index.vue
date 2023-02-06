@@ -61,7 +61,7 @@
 </template>
 
 <script setup>
-import { reactive, onMounted, onUnmounted, onErrorCaptured } from "vue";
+import { reactive, onErrorCaptured, onMounted, onUnmounted } from "vue";
 import services from "@/services";
 import HeaderLogged from "@/components/HeaderLogged/index.vue";
 import Filters from "./components/Filters.vue";

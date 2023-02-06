@@ -47,8 +47,8 @@
 import { reactive } from "vue";
 import { wait } from "@/utils/timeout";
 import { getDiffTimeBetweenCurrentDate } from "@/utils/date";
-import Badge from "./Badge.vue";
 import Icon from "@/components/Icon/index.vue";
+import Badge from "./Badge.vue";
 
 const props = defineProps({
   isOpened: { type: Boolean, default: false },
