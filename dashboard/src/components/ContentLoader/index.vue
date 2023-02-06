@@ -13,7 +13,6 @@
       class="content-loader--fx"
     >
     </span>
-    <slot></slot>
   </div>
 </template>
 
