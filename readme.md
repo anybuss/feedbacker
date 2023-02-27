@@ -10,8 +10,8 @@
 - JavaScript
 - VueJS
 - Vite
-- Vitest
-- Cypress
+- Vitest (em desenvolvimento)
+- Cypress (em desenvolvimento)
 - Vercel (deploy backend)
 - Netlify (deploy frontend)
 
@@ -28,7 +28,7 @@ git clone git@github.com:anybuss/feedbacker.git
 Após finalizado, entre na pasta do projeto
 
 ```
-cd backend
+cd feedbacker
 ```
 
 e abra o editor de código de sua preferência (indico VSCode).
