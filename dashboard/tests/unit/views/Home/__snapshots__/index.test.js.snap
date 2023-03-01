@@ -1,0 +1,11 @@
+// Vitest Snapshot v1
+
+exports[`Home component > should render home correctly 1`] = `
+"<custom-header-stub></custom-header-stub>
+<contact-stub></contact-stub>"
+`;
+
+exports[`Home page > should render home correctly 1`] = `
+"<custom-header-stub></custom-header-stub>
+<contact-stub></contact-stub>"
+`;
