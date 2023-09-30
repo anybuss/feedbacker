@@ -1,0 +1,21 @@
+// Vitest Snapshot v1
+
+exports[`AuthService > should return a token when login is successful 1`] = `
+{
+  "data": {
+    "token": "123.123",
+  },
+  "errors": null,
+}
+`;
+
+exports[`AuthService > should return an user when user register 1`] = `
+{
+  "data": {
+    "email": "john@doe.com",
+    "name": "John Doe",
+    "password": "pass@123",
+  },
+  "errors": null,
+}
+`;

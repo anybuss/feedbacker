@@ -1,0 +1,15 @@
+// Vitest Snapshot v1
+
+exports[`HeaderLogged component > should render header logged correctly 1`] = `
+"<section data-v-dfaab776=\\"\\">
+  <div data-v-dfaab776=\\"\\" class=\\"wrapper\\"><img data-v-dfaab776=\\"\\" src=\\"/src/assets/images/logo_white.svg\\" alt=\\"Feedbacker logo\\">
+    <nav data-v-dfaab776=\\"\\">
+      <ul data-v-dfaab776=\\"\\">
+        <li data-v-dfaab776=\\"\\" id=\\"navbar-credentials\\"> Credenciais </li>
+        <li data-v-dfaab776=\\"\\" id=\\"navbar-feedbacks\\">Feedbacks</li>
+        <li data-v-dfaab776=\\"\\" id=\\"navbar-logout\\">...</li>
+      </ul>
+    </nav>
+  </div>
+</section>"
+`;
