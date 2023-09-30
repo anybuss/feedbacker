@@ -1,6 +1,6 @@
 <template>
   <section>
-    <div class="top-content">
+    <div class="top-content" id="modal-create-account">
       <h2>Crie uma conta</h2>
       <button @click="modal.close" id="close-modal">
         <icon name="close"></icon>
