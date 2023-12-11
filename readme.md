@@ -1,7 +1,5 @@
 <h1 align="center">Feedbacker</h1>
 
-![Em desenvolvimento](http://img.shields.io/static/v1?label=STATUS&message=EM%20DESENVOLVIMENTO&color=GREEN&style=for-the-badge)
-
 ![image](https://user-images.githubusercontent.com/101362563/217108629-401ba01e-2340-442a-adb2-cd725aa9acf9.png)
 
 ### Techs utilizadas
@@ -10,8 +8,8 @@
 - JavaScript
 - VueJS
 - Vite
-- Vitest (em desenvolvimento)
-- Cypress (em desenvolvimento)
+- Vitest (pausado)
+- Cypress (pausado)
 - Vercel (deploy backend)
 - Netlify (deploy frontend)
 
@@ -70,16 +68,6 @@ npm run dev
 ```
 
 Seguindo esse passo a passo e não tendo problemas na instalação, você terá o frontend do projeto rodando no http://localhost:5173/
-
-**Importante!**
-
-O projeto está em desenvolvimento.
-
-Essa etapa do projeto é o site principal da aplicação para visualização dos feedbacks, você pode criar um usuário temporariamente para navegar entre as páginas e conhecer melhor o projeto.
-
-No momento, estou adicionando testes unitários e testes E2E no projeto do dashboard.
-
-Depois disso, começarei o projeto do widget para poder colocá-lo em sites externos e começar a receber feedbacks de usuários.
 
 ### Créditos
 
